@@ -31,7 +31,9 @@
       </li>
     </ul>
     <div class="col-12 text-left users__articles-container">
-      <%= render 'shared/articles/index' %>
+      #articlesparamsを渡す
+      <%= render 'shared/articles/index' , articles: @articles%>
+
     </div>
   </div>
 </div>
