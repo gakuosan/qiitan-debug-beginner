@@ -1,14 +1,16 @@
 class StocksController < ApplicationController
-  before_action :set_article, only: %i[destroy]
+  before_action :set_article, only: %i[create destroy]
+  #before_action :set_article, only: %i[destroy]
+  #createアクションを追加
   before_action :set_stock, only: %i[destroy]
 
-  def index 
+  def index
     @articles = Article.where(id: current_user.stocks.select(:article_id))
                        .includes(user: :profile_image_attachment)
                        .order(created_at: :desc)
                        .page(params[:page])
   end
-  
+
   def create
     @stock = current_user.stocks.build(article: @article)
     if @stock.save
